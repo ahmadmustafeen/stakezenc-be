@@ -1,8 +1,9 @@
 const express = require("express");
-const { onLogin } = require("./services");
+const { onLogin, onRegister } = require("./services");
 
 const app = express();
 
-app.get("/login", onLogin);
+app.post("/login", onLogin);
+app.post("/register", onRegister);
 
 module.exports = app;

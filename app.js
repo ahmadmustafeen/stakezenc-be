@@ -1,11 +1,15 @@
 // Import required packages
 const express = require("express");
+const bodyParser = require("body-parser");
+
 const connection = require("./connection");
 const Queries = require("./constants");
-
 const Auth = require("./routes/auth");
 // Create an Express application
 const app = express();
+// Add the body-parser middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use("/auth", Auth);
 
