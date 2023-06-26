@@ -1,11 +1,11 @@
-const mysql = require("mysql");
+const mysql = require("mysql2");
 
 // Create a MySQL connection
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "stakezenc",
+  host: "sql.freedb.tech",
+  user: "freedb_stakezenc",
+  password: "Bf62xwj&k$Q?@hG",
+  database: "freedb_stakezenc",
 });
 
 // Connect to MySQL
