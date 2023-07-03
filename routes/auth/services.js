@@ -9,15 +9,20 @@ const checkInvalidRequest = (res, status, message, field) => {
 
 const onLogin = (req, res) => {
   const { username, password } = req?.body || {};
-  checkInvalidRequest(res, 400, "Username is required", username);
-  checkInvalidRequest(res, 400, "Password is required", password);
+  if (!username) {
+    res.status(400).send("Username field is required");
+  }
+  if (!password) {
+    res.status(400).send("Password field is required");
+    return;
+  }
 
   connection.query(
     `SELECT * from user_registration where user_name=? AND password=?`,
     [username, password],
     (error, result) => {
       if (!result?.length) {
-        res.status(400).json({
+        res.status(404).json({
           status: false,
           message: "Username / Password doesn't match our record",
         });
