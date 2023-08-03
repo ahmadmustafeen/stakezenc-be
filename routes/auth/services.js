@@ -1,4 +1,5 @@
-const connection = require("../../connection");
+// const connection = require("../../connection");
+const mysql = require("mysql2");
 
 const checkInvalidRequest = (res, status, message, field) => {
   if (!field) {
@@ -8,6 +9,13 @@ const checkInvalidRequest = (res, status, message, field) => {
 };
 
 const onLogin = (req, res) => {
+  const connection = mysql.createConnection({
+    host: "sql.freedb.tech",
+    user: "freedb_stakezenc",
+    password: "Bf62xwj&k$Q?@hG",
+    database: "freedb_stakezenc",
+  });
+
   const { username, password } = req?.body || {};
   if (!username) {
     res.status(400).send("Username field is required");
@@ -56,10 +64,6 @@ const onRegister = (req, res) => {
     res.status(400).send("Full name field is required");
     return;
   }
-  // checkInvalidRequest(res, 400, "Username is required", username);
-  // checkInvalidRequest(res, 400, "Password is required", password);
-  // checkInvalidRequest(res, 400, "Full name is required", fullname);
-  // checkInvalidRequest(res, 400, "Country is required", country);
 
   try {
     connection.query(

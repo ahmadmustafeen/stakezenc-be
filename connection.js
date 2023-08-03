@@ -5,6 +5,7 @@ const connection = mysql.createConnection({
   host: "sql.freedb.tech",
   user: "freedb_stakezenc",
   password: "Bf62xwj&k$Q?@hG",
+  enableKeepAlive: true,
   database: "freedb_stakezenc",
 });
 
