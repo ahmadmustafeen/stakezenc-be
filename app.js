@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const connection = require("./connection");
 const Queries = require("./constants");
 const Auth = require("./routes/auth");
+const Withdrawal = require("./routes/withdrawal");
 // Create an Express application
 const app = express();
 // Add the body-parser middleware
@@ -12,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use("/auth", Auth);
+app.use("/withdrawal", Withdrawal);
 
 // Define a route
 app.get("/", (req, res) => {
@@ -29,7 +31,7 @@ app.get("/", (req, res) => {
 app.get("*", (req, res) => res.status(404).send("Not Found"));
 
 // Start the server
-const port = 3000;
+const port = 4000;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
