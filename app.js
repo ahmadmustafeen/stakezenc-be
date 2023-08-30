@@ -6,14 +6,20 @@ const connection = require("./connection");
 const Queries = require("./constants");
 const Auth = require("./routes/auth");
 const Withdrawal = require("./routes/withdrawal");
+const Support = require("./routes/support");
 // Create an Express application
 const app = express();
+
 // Add the body-parser middleware
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json({ extended: false }));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use("/auth", Auth);
 app.use("/withdrawal", Withdrawal);
+app.use("/support", Support);
 
 // Define a route
 app.get("/", (req, res) => {
